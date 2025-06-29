@@ -40,7 +40,7 @@ export function GameList({loading, games}) {
 
   const fetchInitialGames = (pageNum) => {
     setLoadingMore(true);
-    fetch(`${BASE_URL}/game_lists/${current_type}/${current_provider}?page=${pageNum}`, {
+    fetch(`${BASE_URL}/game_lists/${current_provider}/${current_type}?page=${pageNum}`, {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
         Accept: "application/json",
@@ -60,8 +60,7 @@ export function GameList({loading, games}) {
 
     const nextPage = page + 1;
     setLoadingMore(true);
-
-    fetch(`${BASE_URL}/game_lists/${current_type}/${current_provider}?page=${nextPage}`, {
+    fetch(`${BASE_URL}/game_lists/${current_provider}/${current_type}?page=${nextPage}`, {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
         Accept: "application/json",
