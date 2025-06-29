@@ -7,7 +7,7 @@ import { LanguageContext } from '../../contexts/LanguageContext';
 export default function WithdrawLog() {
   const { content } = useContext(LanguageContext);
   const { data: logs, loading } = useFetch(BASE_URL + "/transaction/withdraw-log");
-    console.log(localStorage.getItem("token"))
+    // console.log(localStorage.getItem("token"))
   return (
     <>
       <div className="container my-4 mb-5 pb-5">

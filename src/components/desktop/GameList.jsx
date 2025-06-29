@@ -89,7 +89,7 @@ export function GameList({loading, games}) {
     const provider_code = +game.provider_code;
 
 
-    console.log("Game",game);
+
     setLaunchingGameId(game.id);
     setLaunchError("");
 
@@ -104,8 +104,8 @@ export function GameList({loading, games}) {
         body: JSON.stringify({
           // game_code: game.game_code,
           // product_code: game.product_code,
-          // productId : provider_code,
-          // gameType  : game.game_type_id,
+          productId : provider_code,
+          gameType  : game.game_type_id,
 
         }),
       });
@@ -184,7 +184,7 @@ export function GameList({loading, games}) {
       <p className="text-center">{content?.no_data || "No games found."}</p>
     </>)
 
-  console.log('customGameTypes', customGameTypes);
+
   return (
       <>
         <div className={styles.tabScrollRow} >

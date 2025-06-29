@@ -74,7 +74,7 @@ const GameContextProvider = ({ children }) => {
         }),
         [types, providersData, game_lists, hot_games, loading, type, provider, providerName, typeName]
     );
-    // console.log('hot_games',hot_games);
+
     return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
 };
 

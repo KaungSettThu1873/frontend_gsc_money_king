@@ -29,8 +29,8 @@ const WithDraw = () => {
     await inputSubmit(url, inputData, method, redirect, msg);
   }
   const userBalance = user.balance.toLocaleString();
-  console.log(typeof (userBalance));
-  console.log(payment);
+  // console.log(typeof (userBalance));
+  // console.log(payment);
   return (
     <div>
       <ToastContainer />
