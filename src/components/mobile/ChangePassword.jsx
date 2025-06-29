@@ -14,7 +14,7 @@ const ChangePassword = () => {
   const {inputSubmit, error, loading, errMsg} = useFormSubmit();
   const changePassword = async (e) => {
     e.preventDefault();
-    let url = BASE_URL + "/change-password";
+    let url = BASE_URL + "/changePassword";
     let inputData = {current_password, password, password_confirmation};
     let method = "POST";
     let redirect = "/information?tab=profile";

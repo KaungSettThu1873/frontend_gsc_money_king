@@ -4,14 +4,16 @@ import { LanguageContext } from '../../contexts/LanguageContext'
 import useFetch from '../../hooks/useFetch'
 import BASE_URL from '../../hooks/baseUrl'
 import { message } from 'antd'
-import useFormSubmit from '../../hooks/useFormSubmit'
+import useFormDataSubmit from '../../hooks/useFormDataSubmit'
 
 
 const Deposit = () => {
   const { content } = useContext(LanguageContext);
+  // console.log('content', content);
   const [show, setShow] = useState(false);
   const [amount, setAmount] = useState('');
-  const [refrence_no, setRefrence_no] = useState('');
+  const [image, setImage] = useState('');
+  // const [refrence_no, setRefrence_no] = useState('');
   const { data: banks } = useFetch(BASE_URL + "/banks");
   const [selectedBank, setSelectedBank] = useState(null);
 
@@ -29,14 +31,15 @@ const Deposit = () => {
     }
   };
 
-  const {inputSubmit, error, loading, errMsg} = useFormSubmit();
+  const {inputSubmit, error, loading, errMsg} = useFormDataSubmit();
   const deposit = async (e) => {
     e.preventDefault();
-    let url = BASE_URL + "/depositfinicial";
+    let url = BASE_URL + "/transaction/deposit";
     let inputData = {
-      'agent_payment_type_id': selectedBank?.id,
-      amount, 
-      refrence_no
+      'bank_id': selectedBank?.id,
+      image,
+      amount,
+      // refrence_no
     }
     let method = "POST";
     let redirect = "/information?tab=logs&type=deposit";
@@ -48,8 +51,9 @@ const Deposit = () => {
 
   return (
     <div>
-      <form 
-      className="profileForm px-3 py-4 rounded-4" 
+
+      <form
+      className="profileForm px-3 py-4 rounded-4"
       onSubmit={deposit}
       >
         <div className="d-flex justify-content-between">
@@ -66,14 +70,15 @@ const Deposit = () => {
                 <div>
                   <img
                     className="rounded-3 shadow"
-                    src={"https://luckymillion.pro" + selectedBank.image}
+                    src={selectedBank.logo}
                     width={50}
                     alt={selectedBank.payment_type}
                   />
                 </div>
                 <div className="ms-2">
-                  <h6 className="fw-bold text-white">{selectedBank.payment_type}</h6>
+                  {/*<h6 className="fw-bold text-white">{selectedBank.bank}</h6>*/}
                   <h6 className="fw-bold text-white">{selectedBank.account_number}</h6>
+                  <h6 className="fw-bold text-white">{selectedBank.account_name}</h6>
                 </div>
               </div>
               <div>
@@ -89,7 +94,7 @@ const Deposit = () => {
           <div className="profileTitle col-5 mt-2">{content?.wallet?.amount} : </div>
           <div className="col-7">
             <input type="text"
-              className="form-control bg-transparent text-white placeholder-white" 
+              className="form-control bg-transparent text-white placeholder-white"
               placeholder={content?.wallet?.enter_amount}
               onChange={(e) => setAmount(e.target.value)}
               value={amount}
@@ -97,21 +102,35 @@ const Deposit = () => {
             {error ? (error.amount && <span className='text-danger'>*{error.amount}</span>) : errMsg && <span className='text-danger'>*{errMsg}</span>}
           </div>
         </div>
+{/*        <div className="row mb-2">*/}
+{/*          <div className="profileTitle col-5 mt-2">{content?.wallet?.receipt}</div>*/}
+{/*          <div className="col-7">*/}
+{/*    <input*/}
+{/*  type="text"*/}
+{/*  className="form-control bg-transparent text-white placeholder-white"*/}
+{/*  placeholder={content?.wallet?.enter_last_6_digits}*/}
+{/*  onChange={(e) => setRefrence_no(e.target.value)}*/}
+{/*  value={refrence_no}*/}
+{/*/>*/}
+{/*            {error && error.refrence_no && <span className='text-danger'>*{error.refrence_no}</span>}*/}
+{/*          </div>*/}
+{/*        </div>*/}
+
         <div className="row mb-2">
-          <div className="profileTitle col-5 mt-2">{content?.wallet?.receipt}</div>
+          <div className="profileTitle col-5 mt-2">Image</div>
           <div className="col-7">
-    <input
-  type="text"
-  className="form-control bg-transparent text-white placeholder-white"
-  placeholder={content?.wallet?.enter_last_6_digits}
-  onChange={(e) => setRefrence_no(e.target.value)}
-  value={refrence_no}
-/>
-            {error && error.refrence_no && <span className='text-danger'>*{error.refrence_no}</span>}
+            <input
+                type="file"
+                className="form-control bg-transparent text-white placeholder-white"
+
+                onChange={(e) => setImage(e.target.files[0])}
+                // value={image}
+            />
+            {error && error.image && <span className='text-danger'>*{error.image}</span>}
           </div>
         </div>
         <div className="text-end mt-3">
-          <button 
+          <button
           type='submit'
           className="btn text-black navLoginBtn">
             {loading && <Spinner className='me-1' animation="border" size="sm" />}
@@ -134,7 +153,7 @@ const Deposit = () => {
                 setShow(false)
                 setSelectedBank(bank)
               }} className='d-flex gap-2 bg-white mb-2 p-2 rounded-3 text-black'>
-                <img src={"https://luckymillion.pro" + bank.image} className='bankModalImg img-fluid rounded-2' />
+                <img src={bank.logo} className='bankModalImg img-fluid rounded-2' />
                 <div>
                   <p>{content?.wallet?.account} : {bank.account_number}</p>
                   <p>{content?.wallet?.account_name} : {bank.account_name}</p>

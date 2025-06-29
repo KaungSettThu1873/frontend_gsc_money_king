@@ -61,20 +61,20 @@ const BottomMenu = () => {
               </Link>
             </div>
 
-            <div className="text-center">
-              <Link to="/ads-video?tab=AdsVideo">
-                <img
-                  src={
-                    isActive("/ads-video", null, "AdsVideo")
-                      ? activeImg[3]
-                      : baseImg[3]
-                  }
-                  width={40}
-                  height={40}
-                  className={getIconClass("/AdsVideo")}
-                />
-              </Link>
-            </div>
+            {/*<div className="text-center">*/}
+            {/*  <Link to="/ads-video?tab=AdsVideo">*/}
+            {/*    <img*/}
+            {/*      src={*/}
+            {/*        isActive("/ads-video", null, "AdsVideo")*/}
+            {/*          ? activeImg[3]*/}
+            {/*          : baseImg[3]*/}
+            {/*      }*/}
+            {/*      width={40}*/}
+            {/*      height={40}*/}
+            {/*      className={getIconClass("/AdsVideo")}*/}
+            {/*    />*/}
+            {/*  </Link>*/}
+            {/*</div>*/}
 
                <div className="text-center">
               <Link to="/Promotion?tab=Promotion">

@@ -21,7 +21,7 @@ const Promotion = () => {
             <div className='py-3 rounded border '>
               <h4 className='ms-4 mb-0 text-center'>{item.title}</h4>
               <div className='d-flex justify-content-center'>
-                <img src={ "https://luckymillion.pro/api/.."+item.img_url} className='my-2   img-fluid' />
+                <img src={item.image} className='my-2   img-fluid' />
               </div>
               <p className='mx-4 text-center'>{item.description}</p>
             </div>

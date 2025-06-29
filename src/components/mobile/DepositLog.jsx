@@ -6,7 +6,7 @@ import { LanguageContext } from '../../contexts/LanguageContext';
 
 export default function DepositLog() {
   const { content } = useContext(LanguageContext);
-  const { data: logs, loading } = useFetch(BASE_URL + "/depositlogfinicial");
+  const { data: logs, loading } = useFetch(BASE_URL + "/transaction/deposit-log");
 
   return (
     <>
@@ -28,7 +28,7 @@ export default function DepositLog() {
                 </div>
                 <div className='d-flex justify-content-between align-items-center'>
                   <h6>{content?.log?.date}</h6>
-                  <span>{log.datetime}</span>
+                  <span>{log.created_at}</span>
                 </div>
                 <div className='d-flex justify-content-between align-items-center'>
                   <h6>{content?.wallet?.account_name}</h6>

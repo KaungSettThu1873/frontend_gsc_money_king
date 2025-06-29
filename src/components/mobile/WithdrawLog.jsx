@@ -6,8 +6,8 @@ import { LanguageContext } from '../../contexts/LanguageContext';
 
 export default function WithdrawLog() {
   const { content } = useContext(LanguageContext);
-  const { data: logs, loading } = useFetch(BASE_URL + "/withdrawlogfinicial");
-
+  const { data: logs, loading } = useFetch(BASE_URL + "/transaction/withdraw-log");
+    console.log(localStorage.getItem("token"))
   return (
     <>
       <div className="container my-4 mb-5 pb-5">
@@ -28,7 +28,7 @@ export default function WithdrawLog() {
                 </div>
                 <div className='d-flex justify-content-between align-items-center'>
                   <h6>{content?.log?.date}</h6>
-                  <span>{log.datetime}</span>
+                  <span>{log.created_at}</span>
                 </div>
                 <div className='d-flex justify-content-between align-items-center'>
                   <h6>{content?.wallet?.account_name}</h6>

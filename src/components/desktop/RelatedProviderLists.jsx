@@ -7,14 +7,14 @@ import {useNavigate} from "react-router-dom";
 
 
 function RelatedProviderItem({item}) {
-
+    // console.log('item', item);
     const navigate = useNavigate();
     return (<>
         {/*<div>{item.provider}</div>*/}
         <div>
-
+                {/*<div*/}
                 <button key={item.id} className={`${styles.tabBtn}`}   onClick={() => navigate(`/?type=1&provider=${item.id}`)}>
-                    <span className="gameTabFontSize">{item.provider}</span>
+                    <span className="gameTabFontSize">{item.name}</span>
                 </button>
 
         </div>

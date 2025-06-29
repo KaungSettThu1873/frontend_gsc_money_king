@@ -20,19 +20,20 @@ const ContactPage = () => {
     { img: line, title: 'Line', link: '/' },
   ]
 
-  const { data } = useFetch(BASE_URL + "/contact");
+  const { data } = useFetch(BASE_URL + "/contacts");
+  console.log(data)
 
   const contacts = data?.map((contact) => ({
     ...contact, // Copy existing object properties
-    image: contact.name === "Viber"
+    image: contact.type === "Viber"
       ? viber
-      : contact.name === "Telegram"
+      : contact.type === "Telegram"
         ? tele
-        : contact.name === "Facebook"
+        : contact.type === "Facebook"
           ? fb
           : null, // Default to null if no condition matches
   }));
-  // console.log(contacts);
+  console.log('1',contacts);
 
 
   return (
@@ -53,9 +54,9 @@ const ContactPage = () => {
         <div className="row mt-sm-5 justify-content-center">
           {data && data.map((item, index) => {
             return <div className='col-6 mb-4 col-sm-3 text-center' key={index}>
-              <Link to={item.value} target='_blank'>
-                <img src={"https://luckymillion.pro/api/.."+item.image} className='rounded-2' width={30} />
-                <small className='d-block mt-2'>{item.name}</small>
+              <Link to={item.link} target='_blank'>
+                <img src={item.icon} className='rounded-2' width={30} />
+                <small className='d-block mt-2'>{item.type}</small>
               </Link>
             </div>
           })}

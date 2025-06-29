@@ -66,7 +66,7 @@ export default function ProviderList({ typeCode, type }) {
                         }}
                     >
                         <img
-                            src={"https://luckymillion.pro/api/.." + item.img_url}
+                            src={ item.image}
                             alt=""
                             style={{
                                 width: "100%",

@@ -7,6 +7,7 @@ const Carousels = () => {
   const {banners} = useContext(GeneralContext);
     const { user } = useContext(AuthContext);
 
+    console.log(banners);
 
   return (
     (user && (<>
@@ -14,7 +15,8 @@ const Carousels = () => {
       <Carousel>
         {banners && banners.map((item, index) => {
           return <Carousel.Item key={index}>
-            <img src={"https://luckymillion.pro/api/.."+item.img_url} className='bannerImg' />
+            {/*<div>{"https://moneyking77.online/api/.."+item.desktop_image}</div>*/}
+            <img src={item.desktop_image} className='bannerImg' />
           </Carousel.Item>
         })}
       </Carousel>

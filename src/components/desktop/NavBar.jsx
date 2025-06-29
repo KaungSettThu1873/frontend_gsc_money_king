@@ -44,7 +44,7 @@ function NavBar() {
     },
     { img: promotion, name: content?.nav?.promotion, link: "/promotion"   },
     { img: "/images/Final_All/icons8-message-100.png", name: content?.nav?.contact, link: "/contact" },
-    { img: "/images/Final_All/icons8-video-96.png", name: content?.nav?.ads_video, link: "/ads-video" },
+    // { img: "/images/Final_All/icons8-video-96.png", name: content?.nav?.ads_video, link: "/ads-video" },
   ];
   const [show, setShow] = useState(false);
 

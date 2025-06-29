@@ -32,7 +32,7 @@ const GameTabsLg = () => {
   // const gameProvider = providers && providers.find((p) => p?.code == provider)?.id;
 
   // const providerUrl = https://luckymillion.pro/api/providers/
-
+console.log('hotGames',hot_games)
   const baseImageMap = {
     1: "/images/Final_All/Slot/SlotPng.png",
     2: "/images/Final_All/Casino/LiveCasinoPNG.png",
@@ -127,6 +127,7 @@ const GameTabsLg = () => {
         {type && provider && <GameList loading={loading} />}
         {type == "hot" && (
           <>
+            {/*<div>{hot_games} </div>*/}
             <h5 className="">{content?.game_type?.hot}</h5>
             <GameList loading={loading} games={hot_games} />
           </>

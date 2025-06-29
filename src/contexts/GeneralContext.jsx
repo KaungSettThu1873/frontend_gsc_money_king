@@ -15,11 +15,11 @@ const GeneralContext = createContext({
 
 
 const GeneralContextProvider = ({ children }) => {
-    const { data: banner, loading1 } = useFetch(BASE_URL + "/banner");
-    const { data: ads_banner, loading2 } = useFetch(BASE_URL + "/popup-ads-banner");
-    const { data: banner_text, loading3 } = useFetch(BASE_URL + "/banner_Text");
-    const { data: promotions, loading4} = useFetch(BASE_URL + "/promotion");
-    const { data: contacts, loading5} = useFetch(BASE_URL + "/contact");
+    const { data: banner, loading1 } = useFetch(BASE_URL + "/banners");
+    const { data: ads_banner, loading2 } = useFetch(BASE_URL + "/ads_banner");
+    const { data: banner_text, loading3 } = useFetch(BASE_URL + "/banner_text");
+    const { data: promotions, loading4} = useFetch(BASE_URL + "/promotions");
+    const { data: contacts, loading5} = useFetch(BASE_URL + "/contacts");
    
 
 
@@ -35,7 +35,7 @@ const GeneralContextProvider = ({ children }) => {
         contacts: contacts || null,
         loading
     }), [banner, banner_text, ads_banner, promotions, contacts, loading]);
-
+// console.log(ads_banner);
 
     return (
         <GeneralContext.Provider value={value}>

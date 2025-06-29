@@ -17,7 +17,7 @@ const Log = () => {
     { id: 1, name: content?.wallet?.deposit, value: "deposit", link: '/information?tab=logs&type=deposit' },
     { id: 2, name: content?.wallet?.withdraw, value: "withdraw", link: '/information?tab=logs&type=withdraw' },
     // { id: 3, name: content?.log?.transfer_log, value: "transfer_logs", link: '/information?tab=logs&type=transfer_logs' },
-    { id: 3, name: content?.log?.game_log, value: "game_logs", link: '/information?tab=logs&type=game_logs' },
+    // { id: 3, name: content?.log?.game_log, value: "game_logs", link: '/information?tab=logs&type=game_logs' },
   ];
 
   return (
@@ -38,9 +38,9 @@ const Log = () => {
         <WithdrawLog />
       )}
       {/* game logs */}
-      {type == "game_logs" && (
-        <GameLogs />
-      )}
+      {/*{type == "game_logs" && (*/}
+      {/*  <GameLogs />*/}
+      {/*)}*/}
     </div>
   )
 }

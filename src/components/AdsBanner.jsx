@@ -8,7 +8,7 @@ const AdsBanner = () => {
   const MySwal = withReactContent(Swal);
   const adsFire = () => {
     MySwal.fire({
-      imageUrl: "https://luckymillion.pro/api/.."+ads_banner[0].img_url,
+      imageUrl: ads_banner.desktop_image,
       imageHeight: 150,
       width: '100%',
       // height : '50%',
@@ -20,7 +20,7 @@ const AdsBanner = () => {
     })
   }
 useEffect(() => {
-  if (ads_banner?.length > 0 && ads_banner[0]?.img_url) {
+  if (ads_banner?.desktop_image) {
     adsFire();
   }
 }, [ads_banner]);

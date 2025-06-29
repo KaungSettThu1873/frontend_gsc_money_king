@@ -9,25 +9,28 @@ import { LanguageContext } from '../../contexts/LanguageContext';
 
 const WithDraw = () => {
   const { user } = useContext(AuthContext);
+  console.log(user);
   const { content } = useContext(LanguageContext);
   const { data: banks } = useFetch(BASE_URL + "/banks");
   const [payment, setPayment] = useState('');
   const [account_name, setAccountName] = useState('');
-  const [account_number, setAccountNumber] = useState('');
+  const [account_no, setAccountNumber] = useState('');
   const [amount, setAmount] = useState('');
   const [password, setPassword] = useState('');
 
   const { inputSubmit, error, loading, errMsg } = useFormSubmit();
   const withdraw = async (e) => {
     e.preventDefault();
-    let url = BASE_URL + "/withdrawfinicial";
-    let inputData = { payment_type_id: payment, account_name, account_number, amount, password };
+    let url = BASE_URL + "/transaction/withdraw";
+    let inputData = { bank_id: payment, account_name, account_no, amount, password };
     let method = "POST";
     let redirect = "/information?tab=logs&type=withdraw";
     let msg = "Withdraw Success";
     await inputSubmit(url, inputData, method, redirect, msg);
   }
-
+  const userBalance = user.balance.toLocaleString();
+  console.log(typeof (userBalance));
+  console.log(payment);
   return (
     <div>
       <ToastContainer />
@@ -39,7 +42,7 @@ const WithDraw = () => {
               <input type="text"
                 className="form-control bg-transparent text-white"
                 disabled
-                value={user && Number(user.balance).toLocaleString()} />
+                value={userBalance} />
             </div>
           </div>
           <div className="row mb-2">
@@ -50,10 +53,10 @@ const WithDraw = () => {
               <select className="form-control form-select bg-dark text-white" onChange={e => setPayment(e.target.value)} value={payment}>
                 <option value="">{content?.wallet?.choose_bank}</option>
                 {banks && banks.map((item, index) => (
-                  <option key={index} value={item.id}>{item.payment_type}</option>
+                  <option key={index} value={item.id}>{item.bank}</option>
                 ))}
               </select>
-              {error && error.payment_type_id && <small className="text-danger">*{"ငွေပေးချေမှုနည်းလမ်း ရွေးချယ်ပါ။"}</small>}
+              {error && error.bank_id && <small className="text-danger">*{"ငွေပေးချေမှုနည်းလမ်း ရွေးချယ်ပါ။"}</small>}
             </div>
           </div>
           <div className="row mb-2">
@@ -74,10 +77,10 @@ const WithDraw = () => {
               <input type="text"
                 className="form-control bg-transparent text-white placeholder-white"
                 placeholder={content?.wallet?.enter_account}
-                value={account_number}
+                value={account_no}
                 onChange={(e) => setAccountNumber(e.target.value)}
               />
-              {error && error.account_number && <span className="text-danger">*{error.account_number}</span>}
+              {error && error.account_no && <span className="text-danger">*{error.account_no}</span>}
             </div>
           </div>
           <div className="row mb-2">

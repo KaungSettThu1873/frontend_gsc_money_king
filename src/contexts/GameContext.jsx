@@ -53,7 +53,7 @@ const GameContextProvider = ({ children }) => {
     const { data: game_lists, loading } = useFetch(
         type && selectedProvider ? `${BASE_URL}/game_lists/${type}/${selectedProvider.id}` : null
     );
-    const { data: hot_games } = useFetch(`${BASE_URL}/hot_game_lists`);
+    const { data: hot_games } = useFetch(`${BASE_URL}/hot_games`);
    
     const updateType = (newType) => setType(newType);
     const updateProvider = (newProvider) => setProvider(newProvider);

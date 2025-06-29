@@ -81,12 +81,21 @@ export function GameList({loading, games}) {
         });
   };
 
+  // console.log(localStorage.getItem("token"))
+
+
+
   const handleLaunchGame = async (game) => {
+
+    const provider_code = +game.provider_code;
+
+
+    console.log("Game",game);
     setLaunchingGameId(game.id);
     setLaunchError("");
 
     try {
-      const res = await fetch(`${BASE_URL}/seamless/launch-game`, {
+      const res = await fetch(`${BASE_URL}/direct/Seamless/LaunchGame`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -94,17 +103,20 @@ export function GameList({loading, games}) {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
         body: JSON.stringify({
-          game_code: game.game_code,
-          product_code: game.product_code,
-          game_type: game.game_type,
+          // game_code: game.game_code,
+          // product_code: game.product_code,
+          // productId : provider_code,
+          // gameType  : game.game_type_id,
+
         }),
       });
 
       const result = await res.json();
 
-      if (result.code === 200) {
-        if (result.url) {
-          window.location.href = result.url;
+      // if (result.code === 200) {
+      //   console.log("Result",result);
+        if (result.Url) {
+          window.location.href = result.Url;
         } else if (result.content) {
           const gameWindow = window.open();
           if (gameWindow) {
@@ -115,10 +127,11 @@ export function GameList({loading, games}) {
           }
         } else {
           setLaunchError(result.message || "Launch failed: No URL or content.");
+
         }
-      } else {
-        setLaunchError(result.message || "Failed to launch game.");
-      }
+      // } else {
+      //   setLaunchError(result.message || "Failed to launch game.");
+      // }
     } catch (e) {
       setLaunchError("Network error. Please try again.");
     } finally {
@@ -128,43 +141,43 @@ export function GameList({loading, games}) {
 
   const displayGames = searchTerm
       ? allGames.filter((game) =>
-          game.game_name.toLowerCase().includes(searchTerm.toLowerCase())
+          game.name.toLowerCase().includes(searchTerm.toLowerCase())
       )
       : allGames;
 
 
 
-  let customGameTypes;
+  let customGameTypes = current_type;
 
-  switch (current_type) {
-    case '1':
-      customGameTypes = "SLOT";
-      break;
-    case '2':
-      customGameTypes = "LIVE_CASINO";
-      break;
-    case '3':
-      customGameTypes = "SPORT_BOOK";
-      break;
-    case '4':
-      customGameTypes = "VIRTUAL_SPORT";
-      break;
-    case '5':
-      customGameTypes = "LOTTERY";
-      break;
-    case '8':
-      customGameTypes = "FISHING";
-      break;
-    case '12':
-      customGameTypes = "POKER";
-      break;
-    case '13':
-      customGameTypes = "OTHERS";
-      break;
-    default:
-      customGameTypes = null;
-      break;
-  }
+  // switch (current_type) {
+  //   case '1':
+  //     customGameTypes = "SLOT";
+  //     break;
+  //   case '2':
+  //     customGameTypes = "LIVE_CASINO";
+  //     break;
+  //   case '3':
+  //     customGameTypes = "SPORT_BOOK";
+  //     break;
+  //   case '4':
+  //     customGameTypes = "VIRTUAL_SPORT";
+  //     break;
+  //   case '5':
+  //     customGameTypes = "LOTTERY";
+  //     break;
+  //   case '8':
+  //     customGameTypes = "FISHING";
+  //     break;
+  //   case '12':
+  //     customGameTypes = "POKER";
+  //     break;
+  //   case '13':
+  //     customGameTypes = "OTHERS";
+  //     break;
+  //   default:
+  //     customGameTypes = null;
+  //     break;
+  // }
 
   if (loading && displayGames.length === 0) return <Spinner/>;
   if (!displayGames || displayGames.length === 0)
@@ -210,8 +223,10 @@ export function GameList({loading, games}) {
                       borderTopRightRadius: "1rem",
                     }}
                 >
+
                   <img
-                      src={item.image_url}
+                      src={item.image}
+
                       alt={item.game_name}
                       style={{width: "100%", height: "100%", objectFit: "cover"}}
                       onClick={() => handleLaunchGame(item)}

@@ -9,7 +9,7 @@ const Marquee = () => {
       <div className='shadow-lg homeMarquee py-1 px-3 m-sm-2 w-100'>
         <Volume2Icon className='marqueeText me-2' size={22} />
         <marquee className='marqueeText w-100' behavior="" direction="left">
-          {banner_text?.[0]?.text}
+          {banner_text?.text}
         </marquee>
       </div>
     </div>

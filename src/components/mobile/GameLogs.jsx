@@ -8,7 +8,7 @@ import BASE_URL from '../../hooks/baseUrl';
 export default function GameLogs() {
   const { content } = useContext(LanguageContext);
   const [selectedDate, setSelectedDate] = useState('today');
-  const {data:logs, loading} = useFetch(`${BASE_URL}/player/game-logs?type=${selectedDate}`); 
+  const {data:logs, loading} = useFetch(`${BASE_URL}/wager-logs?type=${selectedDate}`);
 
   return (
     <>
