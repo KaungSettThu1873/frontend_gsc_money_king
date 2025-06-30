@@ -152,6 +152,7 @@ const Register = ({ show, onClose }) => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    onClose();
     let url = BASE_URL + "/register";
     let inputData = { name, phone, password, password_confirmation, referral_code };
     await register(url, inputData);

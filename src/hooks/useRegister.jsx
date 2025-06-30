@@ -19,6 +19,8 @@ const useRegister = () => {
                 setLoading(false);
                 localStorage.setItem('token', res.data.data.token);
                 navigate('/?type=all');
+
+                // window.reload();
                 message.success('Registerd Successfully.');
                 return res.data.data.user;
             }

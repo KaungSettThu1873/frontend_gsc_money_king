@@ -22,7 +22,7 @@ const useLogin = () => {
                 const { token, user } = res.data.data;
                 localStorage.setItem('token', token);
                 updateProfile(user);
-                
+                window.location.reload();
                 navigate('/?type=all');
                 message.success('Logged In Successfully.');
                 return user;
