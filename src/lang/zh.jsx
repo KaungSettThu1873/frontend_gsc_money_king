@@ -118,7 +118,7 @@ const zh_data = {
     },
     contact: {
         contact: "联系我们",
-        welcome: "欢迎来到 Bossi！",
+        welcome: "欢迎来到 Money King！",
         service: "我们为您提供 24 小时服务。",
         hotline: "服务热线",
         copy: "复制"

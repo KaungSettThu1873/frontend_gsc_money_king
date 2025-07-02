@@ -119,7 +119,7 @@ const th_data = {
   },
   contact: {
     contact: "ติดต่อ",
-    welcome: "ยินดีต้อนรับสู่ Bossi",
+    welcome: "ยินดีต้อนรับสู่ Money King",
     service: "เราพร้อมให้บริการตลอด 24 ชั่วโมง",
     hotline: "สายด่วน",
     copy: "คัดลอก"

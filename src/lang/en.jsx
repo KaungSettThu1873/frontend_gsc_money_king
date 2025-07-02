@@ -120,7 +120,7 @@ const en_data = {
     },
     contact: {
         contact: "Contact Us",
-        welcome: "Welcome to Bossi",
+        welcome: "Welcome to Money King",
         service: "Our service is 24/7 for you.",
         hotline: "Hotline",
         copy: "Copy"
